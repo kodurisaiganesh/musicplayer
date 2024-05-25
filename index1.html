@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Your favourite music is here</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="brand"><img src="logo.png" alt="Spotify"> Spotify</li>
+            <li>Home</li>
+            <li>About</li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="songList">
+            <h1>Best of NCS - No Copyright Sounds</h1>
+            <div class="songItemContainer">
+                <div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div>
+                <div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div><div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div><div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div><div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div><div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div><div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div><div class="songItem">
+                    <img alt="1" >
+                    <span class="songName">Let me Love You</span>
+                    <span class="songlistplay"><span class="timestamp">05:34 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
+                </div>
+            </div>
+        </div>
+        <div class="songBanner"></div>
+    </div>
+
+    <div class="bottom">
+        <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
+        <div class="icons">
+            <i class="fas fa-step-backward" id="previous"></i>
+            <i class="far fa-play-circle" id="masterPlay"></i>
+            <i class="fas fa-step-forward" id="next"></i>
+            <i class="fas fa-random" id="shuffle"></i>
+            <i class="fas fa-redo" id="repeat"></i>
+            <i class="fas fa-volume-up" id="volumeIcon"></i>
+            <input type="range" id="volumeSlider" min="0" max="100" value="50">
+        </div>
+        <div class="songInfo">
+            <img src="playing.gif" width="42px" alt="" id="gif">
+            <span id="masterSongName" class="right-corner">Em Sandeham Ledu</span>
+        </div>
+    </div>
+    
+    <div class="playlistSection">
+        <h2>Playlists</h2>
+        <ul id="playlist"></ul>
+        <button id="addPlaylist">Add Playlist</button>
+    </div>
+
+    <!-- Modal for adding playlists -->
+    <div id="playlistModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Playlist</h2>
+            <input type="text" id="newPlaylistName" placeholder="Playlist Name">
+            <button id="createPlaylist">Create</button>
+        </div>
+    </div>
+
+    <!-- Modal for adding songs to playlists -->
+    <div id="addSongModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add Song to Playlist</h2>
+            <ul id="playlistsForAddingSong"></ul>
+        </div>
+    </div>
+
+    <script>
+        console.log("Welcome to Spotify");
+
+        // Initialize the Variables
+        let songIndex = 0;
+        let audioElement = new Audio();
+        let masterPlay = document.getElementById('masterPlay');
+        let myProgressBar = document.getElementById('myProgressBar');
+        let volumeSlider = document.getElementById('volumeSlider');
+        let gif = document.getElementById('gif');
+        let masterSongName = document.getElementById('masterSongName');
+        let playlist = document.getElementById('playlist');
+        let addPlaylist = document.getElementById('addPlaylist');
+        let playlists = {}; // Object to store playlists
+        let isShuffling = false;
+        let isRepeating = false;
+
+        let songs = [
+            { songName: "Em Sandeham Ledu", filePath: "songs/1.mp3", coverPath: "covers/1.jpg", duration: "05:34" },
+            { songName: "Ye Mantramo ", filePath: "songs/2.mp3", coverPath: "covers/2.jpg", duration: "02:33" },
+            { songName: "Lutt Putt Gaya", filePath: "songs/3.mp3", coverPath: "covers/3.jpg", duration: "05:34" },
+            { songName: "Vikram Title", filePath: "songs/4.mp3", coverPath: "covers/4.jpg", duration: "05:34" },
+            { songName: "Ammayi", filePath: "songs/5.mp3", coverPath: "covers/5.jpg", duration: "05:34" },
+            { songName: "JAWAN: Chaleya", filePath: "songs/6.mp3", coverPath: "covers/6.jpg", duration: "05:34" },
+            { songName: "Yemaaya Chesave-Manasaa", filePath: "songs/7.mp3", coverPath: "covers/7.jpg", duration: "05:34" },
+            { songName: "KHAIRIYAT (BONUS TRACK)", filePath: "songs/8.mp3", coverPath: "covers/8.jpg", duration: "05:34" },
+            { songName: "Kurchi Madathapetti", filePath: "songs/9.mp3", coverPath: "covers/9.jpg", duration: "05:34" },
+            { songName: "Awaara - Chiru Chiru Video", filePath: "songs/10.mp3", coverPath: "covers/10.jpg", duration: "05:34" },
+            { songName: "Enna Sona", filePath: "songs/11.mp3", coverPath: "covers/11.jpg", duration: "05:34" },
+            { songName: "Gundellonaa", filePath: "songs/12.mp3", coverPath: "covers/12.jpg", duration: "05:34" },
+        ];
+
+        // Function to create a new playlist
+        function createPlaylist(playlistName) {
+            if (!playlists[playlistName]) {
+                playlists[playlistName] = [];
+                const li = document.createElement('li');
+                li.textContent = playlistName;
+                li.addEventListener('click', () => {
+                    loadPlaylist(playlistName);
+                });
+                playlist.appendChild(li);
+            }
+        }
+
+        // Event listener for creating a playlist
+        addPlaylist.addEventListener('click', () => {
+            document.getElementById('playlistModal').style.display = 'block';
+        });
+
+        // Event listener for closing modal
+        document.querySelectorAll('.close').forEach(el => {
+            el.addEventListener('click', () => {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            });
+        });
+
+        // Event listener for creating a new playlist
+        document.getElementById('createPlaylist').addEventListener('click', () => {
+            const playlistName = document.getElementById('newPlaylistName').value.trim();
+            if (playlistName) {
+                createPlaylist(playlistName);
+                document.getElementById('newPlaylistName').value = ''; // Clear input field
+                document.getElementById('playlistModal').style.display = 'none'; // Close modal
+            }
+        });
+
+        // Function to load a playlist
+        function loadPlaylist(playlistName) {
+            // Clear current song list
+            document.querySelector('.songItemContainer').innerHTML = '';
+            // Load songs from the playlist
+            playlists[playlistName].forEach((song, index) => {
+                const songItem = document.createElement('div');
+                songItem.className = 'songItem';
+                songItem.innerHTML = `
+                    <img src="${song.coverPath}" alt="${index}">
+                    <span class="songName">${song.songName}</span>
+                    <span class="songlistplay"><span class="timestamp">${song.duration} <i id="${index}" class="far songItemPlay fa-play-circle"></i> </span></span>
+                `;
+                document.querySelector('.songItemContainer').appendChild(songItem);
+
+                // Add event listener for playing the song
+                songItem.querySelector('.songItemPlay').addEventListener('click', () => {
+                    playSong(index);
+                });
+            });
+        }
+
+        // Example of adding a song to a playlist
+        function addSongToPlaylist(playlistName, song) {
+            if (playlists[playlistName]) {
+                playlists[playlistName].push(song);
+            }
+        }
+
+        // Function to play a song
+        function playSong(index) {
+            songIndex = index;
+            audioElement.src = songs[songIndex].filePath;
+            masterSongName.innerText = songs[songIndex].songName;
+            audioElement.currentTime = 0;
+            audioElement.play();
+            gif.style.opacity = 1;
+            masterPlay.classList.remove('fa-play-circle');
+            masterPlay.classList.add('fa-pause-circle');
+        }
+
+        // Handle play/pause click
+        masterPlay.addEventListener('click', () => {
+            if (audioElement.paused || audioElement.currentTime <= 0) {
+                audioElement.play();
+                masterPlay.classList.remove('fa-play-circle');
+                masterPlay.classList.add('fa-pause-circle');
+                gif.style.opacity = 1;
+            } else {
+                audioElement.pause();
+                masterPlay.classList.remove('fa-pause-circle');
+                masterPlay.classList.add('fa-play-circle');
+                gif.style.opacity = 0;
+            }
+        });
+
+        // Listen to Events
+        audioElement.addEventListener('timeupdate', () => {
+            // Update Seekbar
+            let progress = parseInt((audioElement.currentTime / audioElement.duration) * 100);
+            myProgressBar.value = progress;
+        });
+
+        myProgressBar.addEventListener('change', () => {
+            audioElement.currentTime = myProgressBar.value * audioElement.duration / 100;
+        });
+
+        volumeSlider.addEventListener('input', () => {
+            audioElement.volume = volumeSlider.value / 100;
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            if (isShuffling) {
+                songIndex = Math.floor(Math.random() * songs.length);
+            } else if (isRepeating) {
+                // Keep the current songIndex
+            } else {
+                songIndex = (songIndex + 1) % songs.length;
+            }
+            playSong(songIndex);
+        });
+
+        document.getElementById('previous').addEventListener('click', () => {
+            if (isShuffling) {
+                songIndex = Math.floor(Math.random() * songs.length);
+            } else if (isRepeating) {
+                // Keep the current songIndex
+            } else {
+                songIndex = (songIndex - 1 + songs.length) % songs.length;
+            }
+            playSong(songIndex);
+        });
+
+        document.getElementById('shuffle').addEventListener('click', () => {
+            isShuffling = !isShuffling;
+            document.getElementById('shuffle').classList.toggle('active', isShuffling);
+        });
+
+        document.getElementById('repeat').addEventListener('click', () => {
+            isRepeating = !isRepeating;
+            document.getElementById('repeat').classList.toggle('active', isRepeating);
+        });
+
+        // Load initial songs into the list
+        songs.forEach((song, index) => {
+            const songItem = document.createElement('div');
+            songItem.className = 'songItem';
+            songItem.innerHTML = `
+                <img src="${song.coverPath}" alt="${index}">
+                <span class="songName">${song.songName}</span>
+                <span class="songlistplay"><span class="timestamp">${song.duration} <i id="${index}" class="far songItemPlay fa-play-circle"></i> </span></span>
+            `;
+            document.querySelector('.songItemContainer').appendChild(songItem);
+
+            // Add event listener for playing the song
+            songItem.querySelector('.songItemPlay').addEventListener('click', () => {
+                playSong(index);
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/26504e4a1f.js" crossorigin="anonymous"></script>
+</body>
+</html>

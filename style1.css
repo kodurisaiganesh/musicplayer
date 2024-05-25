@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.resume section {
+    margin-bottom: 20px;
+}
+
+.resume h3 {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+.resume p {
+    color: #666;
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.resume ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.resume li {
+    margin-bottom: 10px;
+}
+
+.resume li::before {
+    content: "\2022";
+    color: #007bff;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
