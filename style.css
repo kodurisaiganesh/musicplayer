@@ -84,6 +84,7 @@ nav ul li a:hover {
     padding: 10px;
     transition: background-color 0.2s, box-shadow 0.2s;
     cursor: pointer;
+    text-align: center;
 }
 
 .songItem:hover {
@@ -97,7 +98,8 @@ nav ul li a:hover {
 }
 
 .songItem img {
-    width: 100%; /* Adjust to fit within its container */
+    width: 150px; /* Fixed width */
+    height: 150px; /* Fixed height */
     object-fit: cover; /* Maintain aspect ratio while covering the container */
     border-radius: 5px;
 }
