@@ -274,3 +274,29 @@ nav ul li a:hover {
 #addSongModal ul li:hover {
     background-color: #f0f0f0; /* Light grey background on hover */
 }
+/* Add this to your style.css file */
+
+/* Styles for the control icons */
+.icons i {
+    font-size: 1.5em;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.icons i:hover {
+    transform: scale(1.2);
+}
+
+/* Styles specifically for mobile view */
+@media only screen and (max-width: 768px) {
+    .icons i {
+        font-size: 2em; /* Increase the font size for mobile */
+        padding: 15px;  /* Increase padding for better touch targets */
+    }
+
+    #volumeSlider {
+        width: 100px; /* Adjust the width of the volume slider for mobile */
+    }
+}
