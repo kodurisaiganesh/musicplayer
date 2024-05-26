@@ -9,15 +9,14 @@
 </head>
 <body>
     <nav>
-        <div class="container">
-            <ul>
-                <li class="brand"><img src="logo.png" alt="Spotify"> Music</li>
-                <li>Home</li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </div>
+        <ul>
+            <li class="brand"><img src="logo.png" alt="Spotify"> Music</li>
+            <li>Home</li>
+            <li><a href="about.html">About</a></li>
+        </ul>
     </nav>
- <div class="container">
+
+    <div class="container">
         <div class="songList">
             <h1>Albums</h1>
             <div class="songItemContainer">
@@ -87,30 +86,22 @@
         <div class="songBanner"></div>
     </div>
 
- <div class="bottom">
-    <div class="progress-container">
+    <div class="bottom">
         <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
-    </div>
-    <div class="controls">
-        <div class="control-buttons">
+        <div class="icons">
             <i class="fas fa-step-backward" id="previous"></i>
             <i class="far fa-play-circle" id="masterPlay"></i>
             <i class="fas fa-step-forward" id="next"></i>
-        </div>
-        <div class="extra-buttons">
             <i class="fas fa-random" id="shuffle"></i>
             <i class="fas fa-redo" id="repeat"></i>
             <i class="fas fa-volume-up" id="volumeIcon"></i>
             <input type="range" id="volumeSlider" min="0" max="100" value="50">
         </div>
+        <div class="songInfo">
+            <img src="playing.gif" width="42px" alt="" id="gif">
+            <span id="masterSongName" class="right-corner">Em Sandeham Ledu</span>
+        </div>
     </div>
-    <div class="song-info">
-        <img src="playing.gif" width="42px" alt="Playing" id="gif">
-        <span id="masterSongName">Em Sandeham Ledu</span>
-    </div>
-</div>
-
-
     
     <div class="playlistSection">
         <h2>Playlists</h2>
@@ -118,8 +109,13 @@
         <button id="addPlaylist">Add Playlist</button>
     </div>
     
+    <ul id="playlist">
+        <!-- Existing playlist items -->
+    </ul>
+    <button id="addPlaylist">Add Playlist</button>
+    
+
     <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/26504e4a1f.js" crossorigin="anonymous"></script>
 </body>
 </html>
-
