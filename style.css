@@ -84,7 +84,6 @@ nav ul li a:hover {
     padding: 10px;
     transition: background-color 0.2s, box-shadow 0.2s;
     cursor: pointer;
-    text-align: center;
 }
 
 .songItem:hover {
@@ -98,17 +97,9 @@ nav ul li a:hover {
 }
 
 .songItem img {
-    width: 100%; /* Ensure the image covers the container */
-    height: 200px; /* Set a fixed height */
+    width: 100%; /* Adjust to fit within its container */
     object-fit: cover; /* Maintain aspect ratio while covering the container */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow */
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
-}
-
-.songItem img:hover {
-    transform: scale(1.05); /* Slightly enlarge the image on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+    border-radius: 5px;
 }
 
 .songName {
@@ -274,29 +265,4 @@ nav ul li a:hover {
 #addSongModal ul li:hover {
     background-color: #f0f0f0; /* Light grey background on hover */
 }
-/* Add this to your style.css file */
 
-/* Styles for the control icons */
-.icons i {
-    font-size: 1.5em;
-    padding: 10px;
-    color: #fff;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.icons i:hover {
-    transform: scale(1.2);
-}
-
-/* Styles specifically for mobile view */
-@media only screen and (max-width: 768px) {
-    .icons i {
-        font-size: 2em; /* Increase the font size for mobile */
-        padding: 15px;  /* Increase padding for better touch targets */
-    }
-
-    #volumeSlider {
-        width: 100px; /* Adjust the width of the volume slider for mobile */
-    }
-}
