@@ -87,22 +87,29 @@
         <div class="songBanner"></div>
     </div>
 
-   <div class="bottom">
-    <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
-    <div class="icons">
-        <i class="fas fa-step-backward" id="previous"></i>
-        <i class="far fa-play-circle" id="masterPlay"></i>
-        <i class="fas fa-step-forward" id="next"></i>
-        <i class="fas fa-random" id="shuffle"></i>
-        <i class="fas fa-redo" id="repeat"></i>
-        <i class="fas fa-volume-up" id="volumeIcon"></i>
-        <input type="range" id="volumeSlider" min="0" max="100" value="50">
+ <div class="bottom">
+    <div class="progress-container">
+        <input type="range" name="range" id="myProgressBar" min="0" value="0" max="100">
     </div>
-    <div class="songInfo">
-        <img src="playing.gif" width="42px" alt="" id="gif">
-        <span id="masterSongName" class="right-corner">Em Sandeham Ledu</span>
+    <div class="controls">
+        <div class="control-buttons">
+            <i class="fas fa-step-backward" id="previous"></i>
+            <i class="far fa-play-circle" id="masterPlay"></i>
+            <i class="fas fa-step-forward" id="next"></i>
+        </div>
+        <div class="extra-buttons">
+            <i class="fas fa-random" id="shuffle"></i>
+            <i class="fas fa-redo" id="repeat"></i>
+            <i class="fas fa-volume-up" id="volumeIcon"></i>
+            <input type="range" id="volumeSlider" min="0" max="100" value="50">
+        </div>
+    </div>
+    <div class="song-info">
+        <img src="playing.gif" width="42px" alt="Playing" id="gif">
+        <span id="masterSongName">Em Sandeham Ledu</span>
     </div>
 </div>
+
 
     
     <div class="playlistSection">
