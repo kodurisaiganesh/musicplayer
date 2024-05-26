@@ -1,173 +1,302 @@
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
+/* Reset default browser styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #121212;
-    color: #fff;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text color for better contrast */
 }
 
 nav {
-    background-color: #1db954;
-    padding: 10px;
+    background-color: #1db954; /* Spotify green */
+    padding: 15px 0;
+}
+
+nav .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav ul {
-    list-style: none;
+    list-style-type: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin: 0;
-    padding: 0;
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 10px;
-    font-size: 1.2em;
+    margin: 0 15px;
+}
+
+nav ul li.brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #0e8026; /* Darker shade of green */
 }
 
 .container {
-    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
 }
 
-.songList h1 {
-    font-size: 2em;
+.songList {
+    background-color: #333; /* Dark grey background for the song list */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1); /* Light shadow for contrast */
 }
 
 .songItemContainer {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 
 .songItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+    border: 1px solid #444; /* Darker border */
+    border-radius: 10px;
     padding: 10px;
-    background-color: #282828;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.songItem:hover {
+    background-color: #555; /* Slightly lighter grey on hover */
+}
+
+.songItem:active {
+    background-color: #666; /* Even lighter grey on click */
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2); /* White shadow for contrast */
+    animation: buttonClick 0.3s ease;
 }
 
 .songItem img {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
+    width: 100%; /* Ensure the image covers the container */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio while covering the container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
 }
 
-.songItem .songName {
-    flex: 1;
-    margin-left: 20px;
+.songItem img:hover {
+    transform: scale(1.05); /* Slightly enlarge the image on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Darker shadow on hover */
+}
+
+.songName {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
 .songlistplay {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
 }
 
-.songlistplay .timestamp {
-    margin-right: 10px;
+.timestamp {
+    color: #888;
+    font-size: 0.8rem;
 }
 
-.songItemPlay {
-    font-size: 1.5em;
-    cursor: pointer;
-}
-
-/* Redesigned bottom controls */
 .bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    background-color: #1db954;
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    background-color: #333; /* Dark grey background for the bottom bar */
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 -2px 5px rgba(255, 255, 255, 0.1); /* Light shadow for contrast */
+    z-index: 999; /* Ensure the bottom bar is above other elements */
 }
 
-.progress-container {
-    width: 90%;
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons i {
+    margin-right: 10px;
+    cursor: pointer;
+    color: #1db954; /* Spotify green */
+}
+
+.icons i:hover {
+    color: #0e8026; /* Darker shade of green */
+}
+
+.songInfo {
+    display: flex;
+    align-items: center;
+}
+
+.songInfo img {
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.playlistSection {
+    margin-bottom: 70px; /* Adjust according to the height of the bottom bar */
+    padding-bottom: 20px; /* Add padding to create space between playlist and bottom bar */
+}
+
+.playlistSection h2 {
+    color: #1db954; /* Spotify green */
+}
+
+#playlist {
+    list-style-type: none;
+    padding: 0;
     margin-bottom: 10px;
 }
 
-#myProgressBar {
+#playlist li {
+    cursor: pointer;
+    color: #fff; /* White text for playlist items */
+    margin-bottom: 5px;
+}
+
+#playlist li:hover {
+    color: #1db954; /* Spotify green */
+}
+
+/* Define the animation */
+@keyframes buttonClick {
+    0% { transform: scale(1); background-color: #666; }
+    50% { transform: scale(1.1); background-color: #fff; }
+    100% { transform: scale(1); background-color: #666; }
+}
+
+/* Add media queries for responsive design */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    .songItemContainer {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .bottom {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .icons {
+        justify-content: space-around;
+    }
+    .songInfo {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
     width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
 }
 
-.controls {
-    display: flex;
-    justify-content: space-between;
-    width: 90%;
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }
 
-.control-buttons, .extra-buttons {
-    display: flex;
-    align-items: center;
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.control-buttons i, .extra-buttons i {
-    font-size: 1.8em;
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#addSongModal .modal-content {
+    max-height: 400px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds modal height */
+}
+
+#addSongModal ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#addSongModal ul li {
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+#addSongModal ul li:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+}
+/* Add this to your style.css file */
+
+/* Styles for the control icons */
+.icons i {
+    font-size: 1.5em;
     padding: 10px;
     color: #fff;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
-.control-buttons i:hover, .extra-buttons i:hover {
+.icons i:hover {
     transform: scale(1.2);
 }
 
-#volumeSlider {
-    width: 80px;
-    margin-left: 10px;
-}
-
-.song-info {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    text-align: center;
-}
-
-.song-info img {
-    margin-right: 10px;
-}
-
-.song-info #masterSongName {
-    font-size: 1.2em;
-}
-
-/* Mobile view adjustments */
+/* Styles specifically for mobile view */
 @media only screen and (max-width: 768px) {
-    .bottom {
-        padding: 10px;
-    }
-
-    .controls {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .control-buttons, .extra-buttons {
-        justify-content: center;
-        margin-bottom: 10px;
+    .icons i {
+        font-size: 2em; /* Increase the font size for mobile */
+        padding: 15px;  /* Increase padding for better touch targets */
     }
 
     #volumeSlider {
-        width: 100px;
-    }
-
-    #myProgressBar {
-        width: 80%;
+        width: 100px; /* Adjust the width of the volume slider for mobile */
     }
 }
